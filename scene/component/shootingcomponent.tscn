@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://8e23xgy8kbxi"]
+
+[ext_resource type="Script" path="res://scene/component/shootingcomponent.gd" id="1_mumxa"]
+[ext_resource type="Texture2D" uid="uid://cwuimy177k273" path="res://game_object/player/pink_hand_point.png" id="2_msv4v"]
+[ext_resource type="PackedScene" uid="uid://b5secceik16mr" path="res://game_object/Bullet/player_bullet.tscn" id="2_tjx2l"]
+
+[node name="Shootingcomponent" type="Node2D"]
+position = Vector2(429, 250)
+script = ExtResource("1_mumxa")
+bullet = ExtResource("2_tjx2l")
+
+[node name="Center" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Hand" type="CharacterBody2D" parent="Center"]
+unique_name_in_owner = true
+motion_mode = 1
+
+[node name="HandSprite" type="Sprite2D" parent="Center/Hand"]
+position = Vector2(34, -36)
+texture = ExtResource("2_msv4v")
+
+[node name="FingerTop" type="Marker2D" parent="Center/Hand"]
+unique_name_in_owner = true
+position = Vector2(71.4178, -71.4178)
+rotation = -0.785398
+
+[node name="North" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -117)
+
+[node name="South" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, 118)
+
+[node name="East" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(117, 0)
+
+[node name="West" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-117, 0)
+
+[node name="Northwest" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-83, -83)
+
+[node name="Northeast" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(83, -83)
+
+[node name="Southwest" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-83, 83)
+
+[node name="Southeast" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(83, 83)

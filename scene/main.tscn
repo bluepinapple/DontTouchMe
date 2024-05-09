@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhl115qinhvbp"]
+
+[ext_resource type="PackedScene" uid="uid://can7rgrgkfjbs" path="res://game_object/player/Player.tscn" id="1_w328f"]
+[ext_resource type="PackedScene" uid="uid://5v8ka0iwb20e" path="res://game_object/Enemy/enemy.tscn" id="2_kona6"]
+
+[node name="Main" type="Node"]
+
+[node name="EntitiesLayer" type="Area2D" parent="." groups=["entities_layer"]]
+position = Vector2(352, 316)
+
+[node name="Player" parent="EntitiesLayer" instance=ExtResource("1_w328f")]
+position = Vector2(384, 0)
+
+[node name="Enemy" parent="EntitiesLayer" instance=ExtResource("2_kona6")]
+
+[node name="BulletsLayer" type="Area2D" parent="." groups=["bullets_layer"]]
+position = Vector2(352, 316)

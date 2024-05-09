@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://e3wn7ynoka18"]
+
+[ext_resource type="Script" path="res://game_object/shoot_device/shoot_device.gd" id="1_5qy7w"]
+[ext_resource type="Texture2D" uid="uid://1bs4v08i83t" path="res://game_object/shoot_device/blue_hand_point.png" id="1_whncl"]
+[ext_resource type="PackedScene" uid="uid://cl7p2ufd1gehp" path="res://game_object/Bullet/bullet.tscn" id="2_esgwo"]
+
+[sub_resource type="Animation" id="Animation_43gsi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_34mgp"]
+resource_name = "shoot"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/Sprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.187207, 0.678373, 0.652895, 0.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s0j70"]
+_data = {
+"RESET": SubResource("Animation_43gsi"),
+"shoot": SubResource("Animation_34mgp")
+}
+
+[node name="ShootDevice" type="Node2D"]
+script = ExtResource("1_5qy7w")
+bullet = ExtResource("2_esgwo")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Visuals"]
+texture = ExtResource("1_whncl")
+
+[node name="bullet_spwan_spot" type="Marker2D" parent="Visuals/Sprite2D"]
+unique_name_in_owner = true
+position = Vector2(39.2488, -37.5703)
+rotation = -0.652894
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s0j70")
+}
+autoplay = "shoot"
