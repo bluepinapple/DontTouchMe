@@ -10,10 +10,20 @@ func _ready():
 	scale = scale * randf_range(0.9,1.1)
 
 
+func _process(delta):
+	if scale > Vector2(3.0,3.0):
+		BulletCollisionComponent.bomb_bigger(self)
+	elif scale < Vector2(0.1,0.1):
+		scale = Vector2(0.1,0.1)
+
+
 func _physics_process(delta):
 	move_and_slide()
 	get_tree().create_timer(5).timeout.connect(func on_timer_timeout():queue_free())
 	
+func set_collision_shape_2d_state(state:bool):
+	collision_shape_2d.disabled = state
+
 
 func get_radius():
 	var radius = collision_shape_2d.shape as CircleShape2D

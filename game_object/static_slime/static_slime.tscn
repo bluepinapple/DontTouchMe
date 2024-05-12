@@ -9,7 +9,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qchev"]
 
 [node name="StaticSlime" type="CharacterBody2D" groups=["static_slime"]]
+collision_layer = 129
 collision_mask = 4
+motion_mode = 1
 script = ExtResource("1_cp7vu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -17,7 +19,7 @@ texture = ExtResource("2_0fpmx")
 
 [node name="TouchArea2D" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_layer = 54
+collision_layer = 246
 collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea2D"]
@@ -26,8 +28,8 @@ shape = SubResource("CircleShape2D_5wtw6")
 
 [node name="CheckArea2D" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_layer = 54
-collision_mask = 32
+collision_layer = 128
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckArea2D"]
 scale = Vector2(4.06453, 4.06453)

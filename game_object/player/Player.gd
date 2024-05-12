@@ -4,10 +4,10 @@ extends CharacterBody2D
 @export var acceleration_smoothing = 100
 @onready var area_2d = $Area2D
 @onready var visuals = $Visuals as Node2D
-@onready var hurt_shape_2d = %hurtShape2D
+@onready var hurt_shape_2d = $Area2D/CollisionShape2D
 
 func _ready():
-	GameEvent.scale_changed.connect(on_player_scale_changed)
+	GameEvent.player_scale_changed.connect(on_player_scale_changed)
 	area_2d.area_entered.connect(on_body_entered)
 	
 
@@ -26,7 +26,7 @@ func _process(delta):
 
 func get_radius():
 	var circle_shape = hurt_shape_2d.shape as CircleShape2D
-	return circle_shape.radius
+	return circle_shape.radius * scale.x * hurt_shape_2d.scale.x
 
 func get_movement_vecter():
 	
@@ -40,14 +40,30 @@ func on_body_entered(other_node : Node2D):
 	var other = other_node.get_parent() as CharacterBody2D
 	if other == null:
 		return
-	GameEvent.emit_player_scale_changed(other.scale)
+	var self_radius = get_radius()
+	var other_radius = other.get_radius()
+	
+	if other.is_in_group("player_bullet"):
+		other_radius = other_radius * .8
+	var increas_percent = sqrt(self_radius*self_radius + other_radius*other_radius) / self_radius
+	var result_scale = scale * increas_percent
+	if result_scale > Vector2(10,10):
+		BulletCollisionComponent.bomb_bigger(self)
+	else :
+		var tween = create_tween()
+		tween.tween_property(self,"scale",result_scale,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 
-
-func on_player_scale_changed(scale_amount:Vector2):
-	var scale_increase = scale + scale_amount
-	var tween = create_tween()
-	tween.tween_property(self,"scale",scale_increase,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	if scale > Vector2(3.0,3.0):
-		scale = Vector2(3.0,3.0)
-	elif scale < Vector2(0.3,0.3):
-		scale = Vector2(0.3,0.3)
+func on_player_scale_changed(other_node:CharacterBody2D):
+	if other_node.is_in_group("player_bullet"):
+		var bullet_radius = other_node.get_radius()
+		var player_radius = get_radius()
+		if player_radius <= bullet_radius:
+			scale = Vector2(.1,.1)
+		else :
+			var increas_percent = sqrt(player_radius*player_radius - bullet_radius*bullet_radius) / player_radius
+			var result_scale = scale * increas_percent
+			var tween = create_tween()
+			tween.tween_property(self,"scale",result_scale,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	else :
+		pass
+	

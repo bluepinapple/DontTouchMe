@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cl7p2ufd1gehp"]
+[gd_scene load_steps=8 format=3 uid="uid://cl7p2ufd1gehp"]
 
 [ext_resource type="Script" path="res://game_object/Bullet/bullet.gd" id="1_unvej"]
 [ext_resource type="Texture2D" uid="uid://d1846b38h25xd" path="res://game_object/Bullet/blue_body_circle.png" id="2_k57rm"]
@@ -8,9 +8,14 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_noan0"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_edukw"]
+bounce = 0.8
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f47nj"]
+
 [node name="Bullet" type="CharacterBody2D" groups=["bullet"]]
 scale = Vector2(0.51659, 0.51659)
-collision_layer = 7
+collision_layer = 151
 collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_unvej")
@@ -35,3 +40,11 @@ touch_area = NodePath("../Area2D")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3.61986, 3.61986)
 shape = SubResource("CircleShape2D_noan0")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+collision_mask = 16
+physics_material_override = SubResource("PhysicsMaterial_edukw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+scale = Vector2(3.46668, 3.46668)
+shape = SubResource("CircleShape2D_f47nj")

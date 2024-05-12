@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhl115qinhvbp"]
+[gd_scene load_steps=4 format=3 uid="uid://bhl115qinhvbp"]
 
 [ext_resource type="PackedScene" uid="uid://can7rgrgkfjbs" path="res://game_object/player/Player.tscn" id="1_w328f"]
-[ext_resource type="PackedScene" uid="uid://5v8ka0iwb20e" path="res://game_object/Enemy/enemy.tscn" id="2_kona6"]
-[ext_resource type="PackedScene" uid="uid://e3wn7ynoka18" path="res://game_object/shoot_device/shoot_device.tscn" id="3_tlfrx"]
+[ext_resource type="PackedScene" uid="uid://bylxnw3t4c1ca" path="res://game_object/barraier/barrier.tscn" id="2_h8vtc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkvs2"]
 
@@ -14,13 +13,7 @@ position = Vector2(1040, 504)
 [node name="Player" parent="EntitiesLayer" instance=ExtResource("1_w328f")]
 position = Vector2(384, 0)
 
-[node name="Enemy" parent="EntitiesLayer" instance=ExtResource("2_kona6")]
-
-[node name="Enemy2" parent="EntitiesLayer" instance=ExtResource("2_kona6")]
-position = Vector2(-518, 0)
-
-[node name="ShootDevice" parent="EntitiesLayer" instance=ExtResource("3_tlfrx")]
-position = Vector2(-721, -371)
+[node name="Barrier" parent="EntitiesLayer" instance=ExtResource("2_h8vtc")]
 
 [node name="BulletsLayer" type="Area2D" parent="." groups=["bullets_layer"]]
 position = Vector2(1040, 504)

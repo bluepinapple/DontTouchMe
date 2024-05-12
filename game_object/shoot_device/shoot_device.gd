@@ -5,10 +5,10 @@ extends CharacterBody2D
 @onready var touch_collision = %TouchCollision
 
 func _process(delta):
-	if scale > Vector2(5.0,5.0):
-		BulletCollisionComponent.free_the_little_one(self)
-	elif scale < Vector2(0.3,0.3):
-		scale = Vector2(0.3,0.3)
+	if scale > Vector2(10.0,10.0):
+		BulletCollisionComponent.bomb_bigger(self)
+	elif scale < Vector2(0.1,0.1):
+		scale = Vector2(0.1,0.1)
 
 
 func get_radius():

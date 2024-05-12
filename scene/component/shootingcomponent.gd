@@ -41,7 +41,10 @@ func shoot_bullet():
 			bullet_instance.scale = bullet_instance.scale * player.scale.x
 			bullet_instance.accelerate_straight(get_shoot_vecter().normalized())
 			get_tree().create_timer(.2).timeout.connect(on_timer_timeout)
-			GameEvent.emit_player_scale_changed(-bullet_instance.scale*.1)
+			GameEvent.emit_player_scale_changed(bullet_instance)
+
+
+
 
 func get_shoot_vecter():
 	

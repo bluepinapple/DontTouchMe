@@ -23,7 +23,7 @@ texture = ExtResource("3_q12ba")
 
 [node name="TouchArea2D" type="Area2D" parent="."]
 unique_name_in_owner = true
-collision_layer = 30
+collision_layer = 158
 collision_mask = 12
 
 [node name="TouchCollision" type="CollisionShape2D" parent="TouchArea2D"]

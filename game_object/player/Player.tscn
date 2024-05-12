@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://5vbsrxnui6ph" path="res://game_object/player/face_e.png" id="3_0rx3q"]
 [ext_resource type="PackedScene" uid="uid://8e23xgy8kbxi" path="res://scene/component/shootingcomponent.tscn" id="3_kl7dh"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1l4n5"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ewhyf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i7umt"]
 
@@ -18,16 +18,12 @@ max_speed = 500
 acceleration_smoothing = 20
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 20
+collision_layer = 244
 collision_mask = 2
 
-[node name="hurtShape2D" type="CollisionShape2D" parent="Area2D"]
-unique_name_in_owner = true
-light_mask = 0
-visibility_layer = 0
-scale = Vector2(10.5319, 10.5319)
-shape = SubResource("CircleShape2D_1l4n5")
-debug_color = Color(0, 0.6, 0.701961, 0.419608)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(10.532, 10.532)
+shape = SubResource("CircleShape2D_ewhyf")
 
 [node name="Visuals" type="Node2D" parent="."]
 

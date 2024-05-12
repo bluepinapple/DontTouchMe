@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5secceik16mr"]
+[gd_scene load_steps=6 format=3 uid="uid://b5secceik16mr"]
 
 [ext_resource type="Script" path="res://game_object/Bullet/player_bullet.gd" id="1_fkikb"]
 [ext_resource type="Texture2D" uid="uid://bwls25cwpyvos" path="res://game_object/Bullet/pink_body_circle.png" id="2_48f6y"]
@@ -6,27 +6,34 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6xp8r"]
 
-[node name="PlayerBullet" type="CharacterBody2D" groups=["bullet"]]
+[sub_resource type="CircleShape2D" id="CircleShape2D_x2myd"]
+
+[node name="PlayerBullet" type="CharacterBody2D" groups=["player_bullet"]]
 scale = Vector2(0.51659, 0.51659)
-collision_layer = 7
+collision_layer = 151
 collision_mask = 16
 motion_mode = 1
 script = ExtResource("1_fkikb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -40)
+position = Vector2(0, -0.651192)
 texture = ExtResource("2_48f6y")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 3.8147e-06)
 collision_layer = 118
 collision_mask = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 light_mask = 0
 visibility_layer = 0
-position = Vector2(0, -40)
+position = Vector2(0, -7.62939e-06)
 scale = Vector2(4.86814, 4.86814)
 shape = SubResource("CircleShape2D_6xp8r")
 
 [node name="CombineComponet" parent="." node_paths=PackedStringArray("touch_area") instance=ExtResource("3_qyv5y")]
 touch_area = NodePath("../Area2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.71425, 3.71425)
+shape = SubResource("CircleShape2D_x2myd")

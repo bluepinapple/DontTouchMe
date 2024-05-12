@@ -84,3 +84,4 @@ shoot_right={
 2d_physics/layer_5="bullet"
 2d_physics/layer_6="staticslime"
 2d_physics/layer_7="device"
+2d_physics/layer_8="staticslimecheck"

@@ -1,6 +1,6 @@
 extends Node
 
-signal scale_changed
+signal player_scale_changed
 
-func emit_player_scale_changed(scale_amount:Vector2):
-	scale_changed.emit(scale_amount)
+func emit_player_scale_changed(other_node:CharacterBody2D):
+	player_scale_changed.emit(other_node)

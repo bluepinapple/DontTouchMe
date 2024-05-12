@@ -18,10 +18,15 @@ func _process(delta):
 	run_away(delta)
 	move_and_slide()
 	if scale > Vector2(3.0,3.0):
-		BulletCollisionComponent.free_the_little_one(self)
-	elif scale < Vector2(0.3,0.3):
-		scale = Vector2(0.3,0.3)
+		BulletCollisionComponent.bomb_bigger(self)
+	elif scale < Vector2(0.1,0.1):
+		scale = Vector2(0.1,0.1)
+
+
+func set_collision_shape_2d_state(state:bool):
+	touch_collision.disabled = state
 	
+
 func get_radius():
 	var radius = touch_collision.shape as CircleShape2D
 	return radius.radius * scale.x* touch_collision.scale.x
