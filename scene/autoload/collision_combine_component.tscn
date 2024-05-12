@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://du81ht4ux08db"]
+
+[ext_resource type="Script" path="res://scene/autoload/collision_combine_component.gd" id="1_k0spc"]
+[ext_resource type="PackedScene" uid="uid://bobhew4uj18th" path="res://game_object/static_slime/static_slime.tscn" id="2_juifx"]
+
+[node name="CollisionCombineComponent" type="Node"]
+script = ExtResource("1_k0spc")
+slime_scene = ExtResource("2_juifx")

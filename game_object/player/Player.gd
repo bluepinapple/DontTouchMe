@@ -4,7 +4,7 @@ extends CharacterBody2D
 @export var acceleration_smoothing = 100
 @onready var area_2d = $Area2D
 @onready var visuals = $Visuals as Node2D
-
+@onready var hurt_shape_2d = %hurtShape2D
 
 func _ready():
 	GameEvent.scale_changed.connect(on_player_scale_changed)
@@ -24,6 +24,9 @@ func _process(delta):
 	if move_sign != 0:
 		visuals.scale = Vector2(move_sign,1)
 
+func get_radius():
+	var circle_shape = hurt_shape_2d.shape as CircleShape2D
+	return circle_shape.radius
 
 func get_movement_vecter():
 	
@@ -34,12 +37,16 @@ func get_movement_vecter():
 
 
 func on_body_entered(other_node : Node2D):
-	GameEvent.emit_player_scale_changed(1.2)
+	var other = other_node.get_parent() as CharacterBody2D
+	if other == null:
+		return
+	GameEvent.emit_player_scale_changed(other.scale)
 
 
-func on_player_scale_changed(amount:float):
-	scale *= amount
-	#print(scale)
+func on_player_scale_changed(scale_amount:Vector2):
+	var scale_increase = scale + scale_amount
+	var tween = create_tween()
+	tween.tween_property(self,"scale",scale_increase,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	if scale > Vector2(3.0,3.0):
 		scale = Vector2(3.0,3.0)
 	elif scale < Vector2(0.3,0.3):

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://e3wn7ynoka18"]
+[gd_scene load_steps=9 format=3 uid="uid://e3wn7ynoka18"]
 
 [ext_resource type="Script" path="res://game_object/shoot_device/shoot_device.gd" id="1_5qy7w"]
 [ext_resource type="Texture2D" uid="uid://1bs4v08i83t" path="res://game_object/shoot_device/blue_hand_point.png" id="1_whncl"]
 [ext_resource type="PackedScene" uid="uid://cl7p2ufd1gehp" path="res://game_object/Bullet/bullet.tscn" id="2_esgwo"]
+[ext_resource type="PackedScene" uid="uid://dbixjbkms6yi5" path="res://scene/autoload/combine_componet.tscn" id="4_s7021"]
 
 [sub_resource type="Animation" id="Animation_43gsi"]
 length = 0.001
@@ -55,9 +56,21 @@ _data = {
 "shoot": SubResource("Animation_34mgp")
 }
 
-[node name="ShootDevice" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_a74jr"]
+radius = 5.0
+
+[node name="ShootDevice" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_5qy7w")
 bullet = ExtResource("2_esgwo")
+
+[node name="CombineComponet" parent="." node_paths=PackedStringArray("touch_area") instance=ExtResource("4_s7021")]
+touch_area = NodePath("../TouchArea2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s0j70")
+}
+autoplay = "shoot"
 
 [node name="Visuals" type="Node2D" parent="."]
 
@@ -66,11 +79,15 @@ texture = ExtResource("1_whncl")
 
 [node name="bullet_spwan_spot" type="Marker2D" parent="Visuals/Sprite2D"]
 unique_name_in_owner = true
-position = Vector2(39.2488, -37.5703)
+position = Vector2(57.5184, -51.5426)
 rotation = -0.652894
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_s0j70")
-}
-autoplay = "shoot"
+[node name="TouchArea2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 30
+collision_mask = 64
+
+[node name="TouchCollision" type="CollisionShape2D" parent="TouchArea2D"]
+unique_name_in_owner = true
+scale = Vector2(8.43021, 8.43021)
+shape = SubResource("CircleShape2D_a74jr")

@@ -1,7 +1,19 @@
-extends Node2D
+extends CharacterBody2D
 
 @export var bullet : PackedScene
 @onready var marker_2d = %bullet_spwan_spot
+@onready var touch_collision = %TouchCollision
+
+func _process(delta):
+	if scale > Vector2(5.0,5.0):
+		BulletCollisionComponent.free_the_little_one(self)
+	elif scale < Vector2(0.3,0.3):
+		scale = Vector2(0.3,0.3)
+
+
+func get_radius():
+	var radius = touch_collision.shape as CircleShape2D
+	return radius.radius * scale.x * touch_collision.scale.x
 
 func shoot():
 	var bullets_layer = get_tree().get_first_node_in_group("bullets_layer")

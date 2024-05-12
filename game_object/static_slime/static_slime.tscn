@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://bobhew4uj18th"]
+
+[ext_resource type="Script" path="res://game_object/static_slime/static_slime.gd" id="1_cp7vu"]
+[ext_resource type="Texture2D" uid="uid://d1846b38h25xd" path="res://game_object/Bullet/blue_body_circle.png" id="2_0fpmx"]
+[ext_resource type="PackedScene" uid="uid://dbixjbkms6yi5" path="res://scene/autoload/combine_componet.tscn" id="3_khlju"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5wtw6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qchev"]
+
+[node name="StaticSlime" type="CharacterBody2D" groups=["static_slime"]]
+collision_mask = 4
+script = ExtResource("1_cp7vu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0fpmx")
+
+[node name="TouchArea2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 54
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea2D"]
+scale = Vector2(4.36, 4.36)
+shape = SubResource("CircleShape2D_5wtw6")
+
+[node name="CheckArea2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 54
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckArea2D"]
+scale = Vector2(4.06453, 4.06453)
+shape = SubResource("CircleShape2D_5wtw6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(3.43071, 3.43071)
+shape = SubResource("CircleShape2D_qchev")
+
+[node name="CombineComponet" parent="." node_paths=PackedStringArray("touch_area") instance=ExtResource("3_khlju")]
+touch_area = NodePath("../TouchArea2D")

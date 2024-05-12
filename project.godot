@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameEvent="*res://scene/autoload/game_event.tscn"
+BulletCollisionComponent="*res://scene/autoload/collision_combine_component.gd"
 
 [debug]
 
@@ -27,6 +28,9 @@ gdscript/warnings/unused_parameter=0
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/window_width_override=1152
+window/size/window_height_override=648
+window/stretch/mode="canvas_items"
 
 [input]
 
@@ -78,3 +82,5 @@ shoot_right={
 2d_physics/layer_3="enemy"
 2d_physics/layer_4="enemycollision"
 2d_physics/layer_5="bullet"
+2d_physics/layer_6="staticslime"
+2d_physics/layer_7="device"

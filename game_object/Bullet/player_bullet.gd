@@ -2,16 +2,21 @@ extends CharacterBody2D
 
 @export var max_speed :int = 1000
 @export var acceleration : float = 1000
+
 @onready var area_2d = $Area2D
+@onready var collision_shape_2d = $Area2D/CollisionShape2D
 
 func _ready():
-	area_2d.area_entered.connect(on_body_entered)
+	scale = scale * randf_range(0.9,1.1)
 
 
 func _physics_process(delta):
 	move_and_slide()
 	get_tree().create_timer(5).timeout.connect(func on_timer_timeout():queue_free())
-	
+
+func get_radius():
+	var circle_shape =collision_shape_2d.shape as CircleShape2D
+	return circle_shape.radius * scale.x * collision_shape_2d.scale.x
 
 func accelerate_straight(direction : Vector2):
 	var desired_velocity = direction * max_speed

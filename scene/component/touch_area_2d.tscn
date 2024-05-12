@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://4gc403kl1e2g"]
+
+[ext_resource type="Script" path="res://scene/component/touch_area_2d.gd" id="1_kv5dl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_edyfi"]
+
+[node name="TouchArea2D" type="Area2D"]
+collision_layer = 30
+collision_mask = 12
+script = ExtResource("1_kv5dl")
+radius = 10.0
+
+[node name="TouchCollision" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+scale = Vector2(8.43021, 8.43021)
+shape = SubResource("CircleShape2D_edyfi")
