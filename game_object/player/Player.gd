@@ -57,7 +57,7 @@ func on_player_scale_changed(other_node:CharacterBody2D):
 	if other_node.is_in_group("player_bullet"):
 		var bullet_radius = other_node.get_radius()
 		var player_radius = get_radius()
-		if player_radius <= bullet_radius:
+		if player_radius <= bullet_radius || scale<Vector2(.1,.1):
 			scale = Vector2(.1,.1)
 		else :
 			var increas_percent = sqrt(player_radius*player_radius - bullet_radius*bullet_radius) / player_radius

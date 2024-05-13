@@ -29,8 +29,8 @@ func shoot_bullet():
 	if is_shooting == false:
 		var player = get_tree().get_first_node_in_group("player") as CharacterBody2D
 		if get_shoot_vecter() != Vector2.ZERO && hand.global_position.distance_to(center.global_position)>100*player.scale.x:
-			if player.scale <= Vector2(0.3,0.3):
-				return
+			#if player.scale <= Vector2(0.3,0.3):
+				#return
 			is_shooting = true
 			var bullet_instance = bullet.instantiate() as CharacterBody2D
 			var bullet_layer = get_tree().get_first_node_in_group("bullets_layer")
