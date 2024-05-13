@@ -15,6 +15,7 @@ extends Node2D
 @export var bullet : PackedScene
 @export var max_speed = 600
 @export var acceleration : float = 150
+@export var spwan_time_wait : float = .3
 
 var is_shooting = false
 
@@ -32,15 +33,18 @@ func shoot_bullet():
 			#if player.scale <= Vector2(0.3,0.3):
 				#return
 			is_shooting = true
-			var bullet_instance = bullet.instantiate() as CharacterBody2D
+			var bullet_instance = bullet.instantiate() as RigidBody2D
 			var bullet_layer = get_tree().get_first_node_in_group("bullets_layer")
 			if bullet_layer == null:
 				return
 			bullet_layer.add_child(bullet_instance)
+			#bullet_instance.scale = bullet_instance.scale * player.scale.x
 			bullet_instance.global_position = finger_top.global_position
-			bullet_instance.scale = bullet_instance.scale * player.scale.x
-			bullet_instance.accelerate_straight(get_shoot_vecter().normalized())
-			get_tree().create_timer(.2).timeout.connect(on_timer_timeout)
+			bullet_instance.apply_impulse(get_shoot_vecter().normalized()*800,Vector2.ZERO)
+			#print(bullet_instance,bullet_instance.scale)
+			#print("sprite",bullet_instance.sprite_2d.scale)
+			bullet_instance.set_all_scale(player.scale)
+			get_tree().create_timer(spwan_time_wait).timeout.connect(on_timer_timeout)
 			GameEvent.emit_player_scale_changed(bullet_instance)
 
 

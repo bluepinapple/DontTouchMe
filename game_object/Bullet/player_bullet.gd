@@ -3,7 +3,6 @@ extends CharacterBody2D
 @export var max_speed :int = 1000
 @export var acceleration : float = 1000
 
-@onready var rigid_body_2d = $RigidBody2D
 @onready var area_2d = $Area2D
 @onready var collision_shape_2d = $Area2D/CollisionShape2D
 
@@ -23,10 +22,6 @@ func _physics_process(delta):
 	move_and_slide()
 	get_tree().create_timer(5).timeout.connect(func on_timer_timeout():queue_free())
 
-
-func set_collision_shape_2d_state(state:bool):
-	collision_shape_2d.disabled = state
-	
 
 func get_radius():
 	var circle_shape =collision_shape_2d.shape as CircleShape2D

@@ -14,6 +14,16 @@ position = Vector2(1040, 504)
 position = Vector2(384, 0)
 
 [node name="Barrier" parent="EntitiesLayer" instance=ExtResource("2_h8vtc")]
+rotation = 0.785397
+
+[node name="Barrier2" parent="EntitiesLayer" instance=ExtResource("2_h8vtc")]
+position = Vector2(0, 415)
+
+[node name="Barrier3" parent="EntitiesLayer" instance=ExtResource("2_h8vtc")]
+position = Vector2(-195, 248)
+
+[node name="Barrier4" parent="EntitiesLayer" instance=ExtResource("2_h8vtc")]
+position = Vector2(167, 415)
 
 [node name="BulletsLayer" type="Area2D" parent="." groups=["bullets_layer"]]
 position = Vector2(1040, 504)

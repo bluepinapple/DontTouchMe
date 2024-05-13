@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game_object/Bullet/player_bullet.gd" id="1_fkikb"]
 [ext_resource type="Texture2D" uid="uid://bwls25cwpyvos" path="res://game_object/Bullet/pink_body_circle.png" id="2_48f6y"]
-[ext_resource type="PackedScene" uid="uid://dbixjbkms6yi5" path="res://scene/autoload/combine_componet.tscn" id="3_qyv5y"]
+[ext_resource type="PackedScene" uid="uid://dbixjbkms6yi5" path="res://scene/component/combine_componet.tscn" id="3_n36bx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6xp8r"]
 
@@ -31,7 +31,7 @@ position = Vector2(0, -7.62939e-06)
 scale = Vector2(4.86814, 4.86814)
 shape = SubResource("CircleShape2D_6xp8r")
 
-[node name="CombineComponet" parent="." node_paths=PackedStringArray("touch_area") instance=ExtResource("3_qyv5y")]
+[node name="CombineComponet" parent="." node_paths=PackedStringArray("touch_area") instance=ExtResource("3_n36bx")]
 touch_area = NodePath("../Area2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

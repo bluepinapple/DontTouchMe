@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://7lw671rwba8w" path="res://game_object/Enemy/green_body_circle.png" id="1_rds6l"]
 [ext_resource type="Script" path="res://game_object/Enemy/enemy.gd" id="1_saba5"]
-[ext_resource type="PackedScene" uid="uid://dbixjbkms6yi5" path="res://scene/autoload/combine_componet.tscn" id="3_1vocg"]
+[ext_resource type="PackedScene" uid="uid://dbixjbkms6yi5" path="res://scene/component/combine_componet.tscn" id="3_1vocg"]
 [ext_resource type="Texture2D" uid="uid://cqyqd36h413ad" path="res://game_object/Enemy/face_c.png" id="3_q12ba"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_edyfi"]

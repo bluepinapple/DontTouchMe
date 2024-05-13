@@ -1,12 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bylxnw3t4c1ca"]
+[gd_scene load_steps=4 format=3 uid="uid://bylxnw3t4c1ca"]
 
 [ext_resource type="Texture2D" uid="uid://nmaglmfxxqpf" path="res://game_object/barraier/tile.png" id="1_xrh8q"]
 [ext_resource type="Script" path="res://game_object/barraier/barrier.gd" id="1_yb4re"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dcl2o"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k331f"]
-size = Vector2(165, 165)
 
 [node name="Barrier" type="StaticBody2D"]
 collision_layer = 255
@@ -19,45 +16,3 @@ texture = ExtResource("1_xrh8q")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(7.47717, 7.47717)
 shape = SubResource("RectangleShape2D_dcl2o")
-
-[node name="RightArea2D" type="Area2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(79, 0)
-scale = Vector2(0.0399998, 0.96)
-collision_layer = 0
-collision_mask = 17
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RightArea2D"]
-shape = SubResource("RectangleShape2D_k331f")
-
-[node name="UpArea2D" type="Area2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(5.18696e-13, -79)
-rotation = -1.5708
-scale = Vector2(0.0399998, 1)
-collision_layer = 0
-collision_mask = 17
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UpArea2D"]
-shape = SubResource("RectangleShape2D_k331f")
-
-[node name="DownArea2D" type="Area2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(9.59233e-14, 79)
-rotation = -1.5708
-scale = Vector2(0.0399998, 1)
-collision_layer = 0
-collision_mask = 17
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DownArea2D"]
-shape = SubResource("RectangleShape2D_k331f")
-
-[node name="LeftArea2D" type="Area2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(-79, 0)
-scale = Vector2(0.0399998, 0.96)
-collision_layer = 0
-collision_mask = 17
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftArea2D"]
-shape = SubResource("RectangleShape2D_k331f")

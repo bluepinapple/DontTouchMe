@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://wyayoylepfgd"]
+
+[ext_resource type="Script" path="res://scene/component/player_bullet_combine_componet.gd" id="1_r3utn"]
+
+[node name="PlayerBulletCombineComponet" type="Node"]
+script = ExtResource("1_r3utn")

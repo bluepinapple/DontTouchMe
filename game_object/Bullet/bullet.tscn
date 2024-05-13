@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://cl7p2ufd1gehp"]
 
 [ext_resource type="Script" path="res://game_object/Bullet/bullet.gd" id="1_unvej"]
-[ext_resource type="Texture2D" uid="uid://d1846b38h25xd" path="res://game_object/Bullet/blue_body_circle.png" id="2_k57rm"]
-[ext_resource type="PackedScene" uid="uid://dbixjbkms6yi5" path="res://scene/autoload/combine_componet.tscn" id="3_liyev"]
+[ext_resource type="Texture2D" uid="uid://d1846b38h25xd" path="res://game_object/blue_body_circle.png" id="2_k57rm"]
+[ext_resource type="PackedScene" uid="uid://dbixjbkms6yi5" path="res://scene/component/combine_componet.tscn" id="3_liyev"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6xp8r"]
 

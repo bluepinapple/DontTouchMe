@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0x7fbuitafqc"
-path="res://.godot/imported/blue_body_circle.png-03d445601242b7dcdd27880e70748e12.ctex"
+uid="uid://d1846b38h25xd"
+path="res://.godot/imported/blue_body_circle.png-cf889ac057f37c081d3d2396f9b1a332.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://game_object/Bullet/blue_body_circle.png"
-dest_files=["res://.godot/imported/blue_body_circle.png-03d445601242b7dcdd27880e70748e12.ctex"]
+source_file="res://game_object/blue_body_circle.png"
+dest_files=["res://.godot/imported/blue_body_circle.png-cf889ac057f37c081d3d2396f9b1a332.ctex"]
 
 [params]
 

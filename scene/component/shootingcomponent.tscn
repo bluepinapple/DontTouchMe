@@ -22,7 +22,7 @@ texture = ExtResource("2_msv4v")
 
 [node name="FingerTop" type="Marker2D" parent="Center/Hand"]
 unique_name_in_owner = true
-position = Vector2(71.4178, -71.4178)
+position = Vector2(87, -87)
 rotation = -0.785398
 
 [node name="North" type="Marker2D" parent="."]

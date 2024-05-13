@@ -37,7 +37,7 @@ func get_movement_vecter():
 
 
 func on_body_entered(other_node : Node2D):
-	var other = other_node.get_parent() as CharacterBody2D
+	var other = other_node.get_parent() as Node2D
 	if other == null:
 		return
 	var self_radius = get_radius()
@@ -53,15 +53,18 @@ func on_body_entered(other_node : Node2D):
 		var tween = create_tween()
 		tween.tween_property(self,"scale",result_scale,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 
-func on_player_scale_changed(other_node:CharacterBody2D):
+func on_player_scale_changed(other_node:Node2D):
 	if other_node.is_in_group("player_bullet"):
 		var bullet_radius = other_node.get_radius()
+		print("bullet_radius",bullet_radius)
 		var player_radius = get_radius()
+		print("player_radius",player_radius)
 		if player_radius <= bullet_radius || scale<Vector2(.1,.1):
 			scale = Vector2(.1,.1)
 		else :
 			var increas_percent = sqrt(player_radius*player_radius - bullet_radius*bullet_radius) / player_radius
 			var result_scale = scale * increas_percent
+			print(increas_percent,result_scale)
 			var tween = create_tween()
 			tween.tween_property(self,"scale",result_scale,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	else :

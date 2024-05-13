@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://e3wn7ynoka18"]
+[gd_scene load_steps=8 format=3 uid="uid://e3wn7ynoka18"]
 
 [ext_resource type="Script" path="res://game_object/shoot_device/shoot_device.gd" id="1_5qy7w"]
 [ext_resource type="Texture2D" uid="uid://1bs4v08i83t" path="res://game_object/shoot_device/blue_hand_point.png" id="1_whncl"]
-[ext_resource type="PackedScene" uid="uid://cl7p2ufd1gehp" path="res://game_object/Bullet/bullet.tscn" id="2_esgwo"]
-[ext_resource type="PackedScene" uid="uid://dbixjbkms6yi5" path="res://scene/autoload/combine_componet.tscn" id="4_s7021"]
+[ext_resource type="PackedScene" uid="uid://dbixjbkms6yi5" path="res://scene/component/combine_componet.tscn" id="4_s7021"]
 
 [sub_resource type="Animation" id="Animation_43gsi"]
 length = 0.001
@@ -61,7 +60,6 @@ radius = 5.0
 
 [node name="ShootDevice" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("1_5qy7w")
-bullet = ExtResource("2_esgwo")
 
 [node name="CombineComponet" parent="." node_paths=PackedStringArray("touch_area") instance=ExtResource("4_s7021")]
 touch_area = NodePath("../TouchArea2D")

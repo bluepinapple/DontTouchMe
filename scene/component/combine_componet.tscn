@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbixjbkms6yi5"]
+
+[ext_resource type="Script" path="res://scene/component/combine_componet.gd" id="1_6qrx5"]
+
+[node name="CombineComponet" type="Node"]
+script = ExtResource("1_6qrx5")

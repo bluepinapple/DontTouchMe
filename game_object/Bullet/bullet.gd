@@ -5,6 +5,8 @@ extends CharacterBody2D
 
 @onready var area_2d = $Area2D as Area2D
 @onready var collision_shape_2d = $Area2D/CollisionShape2D
+@onready var collision = $CollisionShape2D
+
 
 func _ready():
 	scale = scale * randf_range(0.9,1.1)
@@ -13,8 +15,6 @@ func _ready():
 func _process(delta):
 	if scale > Vector2(3.0,3.0):
 		BulletCollisionComponent.bomb_bigger(self)
-	elif scale < Vector2(0.1,0.1):
-		scale = Vector2(0.1,0.1)
 
 
 func _physics_process(delta):
@@ -23,6 +23,11 @@ func _physics_process(delta):
 	
 func set_collision_shape_2d_state(state:bool):
 	collision_shape_2d.disabled = state
+
+
+func set_collision_disabled():
+	collision_shape_2d.disabled = true
+	collision.disabled = true
 
 
 func get_radius():

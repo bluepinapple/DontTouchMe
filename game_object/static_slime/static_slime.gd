@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var touch_area_2d = %TouchArea2D
 @onready var collision_shape_2d = $TouchArea2D/CollisionShape2D
 @onready var check_area_2d = %CheckArea2D
+@onready var check_collision= $CheckArea2D/CollisionShape2D
+@onready var collision = $CollisionShape2D
 
 func _ready():
 	#await get_tree().create_timer(.1).timeout
@@ -15,8 +17,12 @@ func _process(delta):
 	#print(check_area_2d.get_overlapping_areas().size())
 	if scale > Vector2(3.0,3.0):
 		BulletCollisionComponent.bomb_bigger(self)
-	elif scale < Vector2(0.1,0.1):
-		scale = Vector2(0.1,0.1)
+
+
+func set_collision_disabled():
+	collision_shape_2d.disabled = true
+	collision.disabled = true
+	check_collision.disabled = true
 
 
 func get_radius():

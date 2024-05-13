@@ -19,7 +19,7 @@ func shoot():
 	var bullets_layer = get_tree().get_first_node_in_group("bullets_layer")
 	if bullets_layer == null:
 		return
-	var bullet_instance = bullet.instantiate() as CharacterBody2D
+	var bullet_instance = bullet.instantiate() as Node2D
 	
 	bullets_layer.add_child(bullet_instance)
 	bullet_instance.max_speed = 600

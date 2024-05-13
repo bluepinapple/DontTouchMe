@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var touch_area_2d = %TouchArea2D
 @onready var aviod_area_2d = %AviodArea2D
 @onready var touch_collision = %TouchCollision
+@onready var aviod_collision = %AviodCollision
+@onready var collision_shape_2d_2 = $CollisionShape2D2
 
 @export var max_speed = 300
 @export var acceleration_smoothing = 6
@@ -19,8 +21,12 @@ func _process(delta):
 	move_and_slide()
 	if scale > Vector2(3.0,3.0):
 		BulletCollisionComponent.bomb_bigger(self)
-	elif scale < Vector2(0.1,0.1):
-		scale = Vector2(0.1,0.1)
+
+
+func set_collision_disabled():
+	touch_collision.disabled = true
+	aviod_collision.disabled = true
+	collision_shape_2d_2.disabled = true
 
 
 func set_collision_shape_2d_state(state:bool):
@@ -56,7 +62,7 @@ func get_movement_vector():
 	
 	
 func on_aviod_area_entered(other_area:Node2D):
-	var other = other_area.get_parent() as CharacterBody2D
+	var other = other_area.get_parent() as Node2D
 	aviod_group.append(other)
 
 

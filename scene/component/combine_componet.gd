@@ -18,8 +18,8 @@ func queue_free_owner():
 
 func on_area_entered(other:Node2D):
 	var other_radius = other.owner.get_radius()
+	#print("shoot",other,other_radius)
 	var self_radius = get_radius()
-	
 	var is_other_player = other.owner.is_in_group("player")
 	
 	var is_owner_enemy = owner.is_in_group("enemy")
@@ -55,6 +55,10 @@ func scale_increas(self_radius:float,other_radius:float):
 	var increas_percent = sqrt(self_radius*self_radius + other_radius*other_radius) / self_radius
 	if owner == null:
 		return
-	var result_scale = owner.scale * increas_percent
-	var tween = create_tween()
-	tween.tween_property(owner,"scale",result_scale,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	if owner is RigidBody2D:
+		var result_scale = owner.sprite_2d.scale * increas_percent
+		owner.set_all_scale(result_scale)
+	else :
+		var result_scale = owner.scale * increas_percent
+		var tween = create_tween()
+		tween.tween_property(owner,"scale",result_scale,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
