@@ -1,0 +1,182 @@
+[gd_scene load_steps=17 format=3 uid="uid://biutc8enb5nyt"]
+
+[ext_resource type="PackedScene" uid="uid://can7rgrgkfjbs" path="res://game_object/player/Player.tscn" id="1_ewqv6"]
+[ext_resource type="Script" path="res://tempt/scene_4.gd" id="1_qj6a0"]
+[ext_resource type="PackedScene" uid="uid://8hps81xj4umc" path="res://scene/game_camera/game_camera.tscn" id="2_jbvvd"]
+[ext_resource type="Texture2D" uid="uid://dcrpxql4w1hld" path="res://tempt/微信图片_20240515033934.png" id="4_2va6v"]
+[ext_resource type="Script" path="res://tempt/Sprite2D.gd" id="5_by4ef"]
+[ext_resource type="Texture2D" uid="uid://cvauge6djqeve" path="res://tempt/tile_cloud.png" id="5_i43lb"]
+[ext_resource type="PackedScene" uid="uid://bhn7dii5cenxu" path="res://scene/Vignette/vineggite.tscn" id="5_nug2d"]
+[ext_resource type="Texture2D" uid="uid://biwxsekljqhn6" path="res://tempt/tile_coin.png" id="6_ssi3x"]
+
+[sub_resource type="Animation" id="Animation_pieve"]
+resource_name = "in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Entities/GameCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6wxfv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Entities/GameCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rj7vb"]
+_data = {
+"RESET": SubResource("Animation_6wxfv"),
+"in": SubResource("Animation_pieve")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kgct0"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(100, 100, 1)
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 300.0
+initial_velocity_max = 800.0
+gravity = Vector3(0, -1, 0)
+scale_max = 1.2
+color = Color(0.976471, 1, 0.776471, 0.898039)
+
+[sub_resource type="Animation" id="Animation_5to1o"]
+resource_name = "shink"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.261799, 0.0, 0.261799, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_l57m2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4lj0e"]
+_data = {
+"RESET": SubResource("Animation_l57m2"),
+"shink": SubResource("Animation_5to1o")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_37oi2"]
+
+[node name="scene4" type="Node"]
+script = ExtResource("1_qj6a0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rj7vb")
+}
+
+[node name="Entities" type="Area2D" parent="." groups=["entities_layer"]]
+
+[node name="Player" parent="Entities" instance=ExtResource("1_ewqv6")]
+z_index = 1
+position = Vector2(653, 525)
+collision_layer = 16385
+
+[node name="GameCamera" parent="Entities" instance=ExtResource("2_jbvvd")]
+position = Vector2(-209, 21)
+
+[node name="Sprite2D" type="Sprite2D" parent="Entities"]
+position = Vector2(1276, 623)
+scale = Vector2(0.671732, 0.671732)
+texture = ExtResource("4_2va6v")
+script = ExtResource("5_by4ef")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Entities"]
+position = Vector2(898, 449)
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_kgct0")
+texture = ExtResource("5_i43lb")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="Entities"]
+position = Vector2(1739, 788)
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_kgct0")
+texture = ExtResource("5_i43lb")
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="Entities"]
+position = Vector2(1297, 556)
+amount = 3
+process_material = SubResource("ParticleProcessMaterial_kgct0")
+texture = ExtResource("6_ssi3x")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Entities"]
+libraries = {
+"": SubResource("AnimationLibrary_4lj0e")
+}
+
+[node name="Area2D" type="Area2D" parent="Entities"]
+collision_layer = 0
+collision_mask = 255
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Entities/Area2D"]
+position = Vector2(1299.16, 583.145)
+rotation = 0.101675
+scale = Vector2(48.7437, 33.2556)
+shape = SubResource("CircleShape2D_37oi2")
+
+[node name="bullets" type="Area2D" parent="." groups=["bullets_layer"]]
+
+[node name="barriers" type="Area2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.839216, 0.717647, 0.741176, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Vineggite" parent="." instance=ExtResource("5_nug2d")]
+layer = 3
+
+[node name="Label" type="Label" parent="."]
+offset_left = 826.0
+offset_top = -76.0
+offset_right = 1726.0
+offset_bottom = 61.0
+theme_override_font_sizes/font_size = 100
+text = "生日快乐！！！！！"

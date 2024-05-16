@@ -1,32 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhl115qinhvbp"]
+[gd_scene load_steps=6 format=3 uid="uid://bhl115qinhvbp"]
 
-[ext_resource type="PackedScene" uid="uid://can7rgrgkfjbs" path="res://game_object/player/Player.tscn" id="1_w328f"]
-[ext_resource type="PackedScene" uid="uid://bylxnw3t4c1ca" path="res://game_object/barraier/barrier.tscn" id="2_h8vtc"]
+[ext_resource type="PackedScene" uid="uid://wv0eqx2t3op0" path="res://scene/spwan_layers/entities_layer.tscn" id="1_i4l63"]
+[ext_resource type="PackedScene" uid="uid://bu1f3rpao6pw4" path="res://scene/spwan_layers/bullets_layer.tscn" id="2_tkwd4"]
+[ext_resource type="PackedScene" uid="uid://8hps81xj4umc" path="res://scene/game_camera/game_camera.tscn" id="3_s8sre"]
+[ext_resource type="PackedScene" uid="uid://bhn7dii5cenxu" path="res://scene/Vignette/vineggite.tscn" id="4_k7euy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkvs2"]
 
 [node name="Main" type="Node"]
 
-[node name="EntitiesLayer" type="Area2D" parent="." groups=["entities_layer"]]
-position = Vector2(1040, 504)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
 
-[node name="Player" parent="EntitiesLayer" instance=ExtResource("1_w328f")]
-position = Vector2(384, 0)
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.964706, 0.964706, 0.964706, 1)
+metadata/_edit_use_anchors_ = true
 
-[node name="Barrier" parent="EntitiesLayer" instance=ExtResource("2_h8vtc")]
-rotation = 0.785397
+[node name="EntitiesLayer" parent="." instance=ExtResource("1_i4l63")]
 
-[node name="Barrier2" parent="EntitiesLayer" instance=ExtResource("2_h8vtc")]
-position = Vector2(0, 415)
-
-[node name="Barrier3" parent="EntitiesLayer" instance=ExtResource("2_h8vtc")]
-position = Vector2(-195, 248)
-
-[node name="Barrier4" parent="EntitiesLayer" instance=ExtResource("2_h8vtc")]
-position = Vector2(167, 415)
-
-[node name="BulletsLayer" type="Area2D" parent="." groups=["bullets_layer"]]
-position = Vector2(1040, 504)
+[node name="BulletsLayer" parent="." instance=ExtResource("2_tkwd4")]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -34,3 +32,7 @@ position = Vector2(1040, 504)
 position = Vector2(22.0001, 565)
 scale = Vector2(8.08, 116.4)
 shape = SubResource("RectangleShape2D_jkvs2")
+
+[node name="GameCamera" parent="." instance=ExtResource("3_s8sre")]
+
+[node name="Vineggite" parent="." instance=ExtResource("4_k7euy")]

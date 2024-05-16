@@ -13,7 +13,7 @@ func queue_free_little_one(little_one : Node2D):
 
 
 func bomb_bigger(bomb:Node2D):
-	var spwan_position = bomb.global_position
+	#var spwan_position = bomb.global_position
 	bomb.set_collision_disabled()
 	if bomb.is_in_group("player_bullet") || bomb.is_in_group("bullet"):
 		var tween = create_tween()

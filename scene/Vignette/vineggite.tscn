@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhn7dii5cenxu"]
+
+[ext_resource type="Shader" path="res://vigtte.gdshader" id="1_bq5i2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_to0py"]
+shader = ExtResource("1_bq5i2")
+shader_parameter/r_displacement = Vector2(3, 0)
+shader_parameter/g_displacement = Vector2(0, 0)
+shader_parameter/b_displacement = Vector2(-3, 0)
+shader_parameter/height = 0.7
+shader_parameter/width = 0.5
+shader_parameter/fade = 0.7
+
+[node name="Vineggite" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_to0py")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true

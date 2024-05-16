@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://wv0eqx2t3op0"]
+
+[node name="EntitiesLayer" type="Area2D" groups=["entities_layer"]]
+position = Vector2(1040, 504)

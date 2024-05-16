@@ -1,0 +1,301 @@
+[gd_scene load_steps=18 format=3 uid="uid://dex5unvfdt53a"]
+
+[ext_resource type="Script" path="res://tempt/scene_2.gd" id="1_l8pjx"]
+[ext_resource type="PackedScene" uid="uid://bhn7dii5cenxu" path="res://scene/Vignette/vineggite.tscn" id="3_0vdpk"]
+[ext_resource type="PackedScene" uid="uid://beg1bg2gs3hxx" path="res://tempt/one_health_enemy.tscn" id="3_v5aer"]
+[ext_resource type="PackedScene" uid="uid://can7rgrgkfjbs" path="res://game_object/player/Player.tscn" id="4_2okiw"]
+[ext_resource type="PackedScene" uid="uid://8hps81xj4umc" path="res://scene/game_camera/game_camera.tscn" id="6_r66jp"]
+[ext_resource type="Texture2D" uid="uid://bnr2q7tlons6r" path="res://tempt/tile_0438.png" id="6_uqpn5"]
+[ext_resource type="PackedScene" uid="uid://bylxnw3t4c1ca" path="res://game_object/barraier/barrier.tscn" id="7_hnj8e"]
+[ext_resource type="Texture2D" uid="uid://b4mcl2qsaqt1n" path="res://tempt/tile_0439.png" id="7_w2hmm"]
+[ext_resource type="Texture2D" uid="uid://bp3vldldyp5qo" path="res://tempt/tile_0440.png" id="8_ih3bu"]
+[ext_resource type="Texture2D" uid="uid://dgn6rsq700piv" path="res://tempt/tile_0441.png" id="9_8ditp"]
+[ext_resource type="Texture2D" uid="uid://bgl60ihoova0j" path="res://tempt/tile_0579.png" id="10_onuw2"]
+
+[sub_resource type="Animation" id="Animation_oxr68"]
+resource_name = "in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Entities/GameCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.01, 0.01), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s5jb7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Entities/GameCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7kqul"]
+_data = {
+"RESET": SubResource("Animation_s5jb7"),
+"in": SubResource("Animation_oxr68")
+}
+
+[sub_resource type="Animation" id="Animation_gnuom"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1112, 752), Vector2(1112, 697), Vector2(1112, 752), Vector2(1112, 697)]
+}
+
+[sub_resource type="Animation" id="Animation_713m8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("left2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1112, 752)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xd7jk"]
+_data = {
+"RESET": SubResource("Animation_713m8"),
+"idle": SubResource("Animation_gnuom")
+}
+
+[node name="Scene3" type="Node"]
+script = ExtResource("1_l8pjx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7kqul")
+}
+
+[node name="Entities" type="Area2D" parent="." groups=["entities_layer"]]
+
+[node name="Player" parent="Entities" instance=ExtResource("4_2okiw")]
+position = Vector2(653, 525)
+
+[node name="GameCamera" parent="Entities" instance=ExtResource("6_r66jp")]
+position = Vector2(-209, 21)
+
+[node name="Enemy" parent="Entities" instance=ExtResource("3_v5aer")]
+position = Vector2(1518, 525)
+
+[node name="bullets" type="Area2D" parent="." groups=["bullets_layer"]]
+
+[node name="barriers" type="Area2D" parent="."]
+
+[node name="Barrier" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(75, 1152)
+
+[node name="Barrier2" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(224, 1152)
+
+[node name="Barrier3" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(374, 1152)
+
+[node name="Barrier4" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(523, 1152)
+
+[node name="Barrier5" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(673, 1152)
+
+[node name="Barrier6" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(825, 1152)
+
+[node name="Barrier7" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(976, 1152)
+
+[node name="Barrier8" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(1126, 1152)
+
+[node name="Barrier9" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(1276, 1152)
+
+[node name="Barrier10" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(1426, 1152)
+
+[node name="Barrier11" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(1578, 1152)
+
+[node name="Barrier12" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(1729, 1152)
+
+[node name="Barrier13" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(1880, 1152)
+
+[node name="Barrier14" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(75, -77)
+
+[node name="Barrier15" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(224, -77)
+
+[node name="Barrier16" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(374, -77)
+
+[node name="Barrier17" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(523, -77)
+
+[node name="Barrier18" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(673, -77)
+
+[node name="Barrier19" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(825, -77)
+
+[node name="Barrier20" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(976, -77)
+
+[node name="Barrier21" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(1126, -77)
+
+[node name="Barrier22" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(1276, -77)
+
+[node name="Barrier23" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(1426, -77)
+
+[node name="Barrier24" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(1578, -77)
+
+[node name="Barrier25" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(1729, -77)
+
+[node name="Barrier26" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(1880, -77)
+
+[node name="Barrier27" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(2028, 68)
+rotation = -1.5708
+
+[node name="Barrier28" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(2028, 217)
+rotation = -1.5708
+
+[node name="Barrier29" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(2028, 367)
+rotation = -1.5708
+
+[node name="Barrier30" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(2028, 519)
+rotation = -1.5708
+
+[node name="Barrier31" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(2028, 667)
+rotation = -1.5708
+
+[node name="Barrier32" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(2028, 819)
+rotation = -1.5708
+
+[node name="Barrier33" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(2028, 969)
+rotation = -1.5708
+
+[node name="Barrier34" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(2028, 1119)
+rotation = -1.5708
+
+[node name="Barrier35" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(-71, 68)
+rotation = -1.5708
+
+[node name="Barrier36" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(-71, 217)
+rotation = -1.5708
+
+[node name="Barrier37" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(-71, 367)
+rotation = -1.5708
+
+[node name="Barrier38" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(-71, 519)
+rotation = -1.5708
+
+[node name="Barrier39" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(-71, 667)
+rotation = -1.5708
+
+[node name="Barrier40" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(-71, 819)
+rotation = -1.5708
+
+[node name="Barrier41" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(-71, 969)
+rotation = -1.5708
+
+[node name="Barrier42" parent="barriers" instance=ExtResource("7_hnj8e")]
+position = Vector2(-71, 1119)
+rotation = -1.5708
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(-139, 8)
+
+[node name="up" type="Sprite2D" parent="Node2D"]
+position = Vector2(953, 732)
+scale = Vector2(10, 10)
+texture = ExtResource("6_uqpn5")
+
+[node name="right" type="Sprite2D" parent="Node2D"]
+position = Vector2(1111, 871)
+scale = Vector2(10, 10)
+texture = ExtResource("7_w2hmm")
+
+[node name="down" type="Sprite2D" parent="Node2D"]
+position = Vector2(953, 871)
+scale = Vector2(10, 10)
+texture = ExtResource("8_ih3bu")
+
+[node name="left" type="Sprite2D" parent="Node2D"]
+position = Vector2(808, 871)
+scale = Vector2(10, 10)
+texture = ExtResource("9_8ditp")
+
+[node name="left2" type="Sprite2D" parent="Node2D"]
+position = Vector2(1112, 752)
+scale = Vector2(10, 10)
+texture = ExtResource("10_onuw2")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+libraries = {
+"": SubResource("AnimationLibrary_xd7jk")
+}
+autoplay = "idle"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.839216, 0.717647, 0.741176, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Vineggite" parent="." instance=ExtResource("3_0vdpk")]
+layer = 3

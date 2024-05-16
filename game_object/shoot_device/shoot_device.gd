@@ -25,4 +25,6 @@ func shoot():
 	bullet_instance.max_speed = 600
 	bullet_instance.acceleration = 100
 	bullet_instance.global_position = marker_2d.global_position
-	bullet_instance.accelerate_to_player(marker_2d.global_position)
+	#bullet_instance.accelerate_to_player(marker_2d.global_position)
+	#bullet_instance.apply_impulse(get_shoot_vecter().normalized()*800,Vector2.ZERO)
+

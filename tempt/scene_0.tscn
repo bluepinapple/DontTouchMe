@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4t3dqkmjw2mk"]
+
+[ext_resource type="PackedScene" uid="uid://bhn7dii5cenxu" path="res://scene/Vignette/vineggite.tscn" id="2_bgqlb"]
+[ext_resource type="PackedScene" uid="uid://bydlf8yldtsme" path="res://scene/ui/show_text.tscn" id="3_ewfgj"]
+[ext_resource type="PackedScene" uid="uid://bd1od2pww34hh" path="res://game_object/portal/portalTo1.tscn" id="4_0atc6"]
+
+[node name="scene0" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.839216, 0.717647, 0.741176, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Vineggite" parent="." instance=ExtResource("2_bgqlb")]
+
+[node name="ShowText" parent="." instance=ExtResource("3_ewfgj")]
+position = Vector2(481, 495)
+
+[node name="PortalTo2" parent="." instance=ExtResource("4_0atc6")]
+position = Vector2(982, 787)
+scale = Vector2(3.30957, 3.30957)
+script = null

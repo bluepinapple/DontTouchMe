@@ -38,6 +38,6 @@ func set_all_scale(player_scale:Vector2):
 	if player_scale<Vector2(.2,.2):
 		player_scale = Vector2(.2,.2)
 	sprite_2d.scale *= player_scale
-	collision_shape_2d.scale *= player_scale
+	#collision_shape_2d.scale *= player_scale
 	collision.scale *= player_scale
 	#print("out",player_scale)

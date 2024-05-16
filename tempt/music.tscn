@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6w1a8ouvx353"]
+
+[ext_resource type="Script" path="res://Music.gd" id="1_rx5cs"]
+[ext_resource type="AudioStream" uid="uid://cg6lqpuomcn3h" path="res://tempt/Ukulele Song.mp3" id="1_tdj8v"]
+
+[node name="Music" type="AudioStreamPlayer2D"]
+process_mode = 3
+stream = ExtResource("1_tdj8v")
+volume_db = -10.0
+script = ExtResource("1_rx5cs")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true

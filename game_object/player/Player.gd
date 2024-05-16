@@ -6,6 +6,9 @@ extends CharacterBody2D
 @onready var visuals = $Visuals as Node2D
 @onready var hurt_shape_2d = $Area2D/CollisionShape2D
 
+var i : int
+var f : int
+
 func _ready():
 	GameEvent.player_scale_changed.connect(on_player_scale_changed)
 	area_2d.area_entered.connect(on_body_entered)
@@ -36,6 +39,23 @@ func get_movement_vecter():
 	return Vector2(x_movement,y_movement).normalized()
 
 
+func check_and_change_camera():
+	#print(scale)
+	if scale>Vector2(3.0,3.0) && i==0:
+		i += 1
+		GameEvent.emit_change_camera_zoom()
+	elif scale <= Vector2(3.0,3.0) && i == 1:
+		i-= 1
+		GameEvent.emit_change_camera_zoom()
+	elif scale < Vector2(.5,.5) && f == 0:
+		f += 1
+		GameEvent.emit_change_camera_zoom()
+		GameEvent.emit_frist_pause()
+	elif scale >= Vector2(.5,.5) && f == 1:
+		f -= 1
+		GameEvent.emit_change_camera_zoom()
+
+
 func on_body_entered(other_node : Node2D):
 	var other = other_node.get_parent() as Node2D
 	if other == null:
@@ -43,30 +63,44 @@ func on_body_entered(other_node : Node2D):
 	var self_radius = get_radius()
 	var other_radius = other.get_radius()
 	
-	if other.is_in_group("player_bullet"):
+	if other.is_in_group("player_bullet")|| other_node.is_in_group("bullet"):
 		other_radius = other_radius * .8
-	var increas_percent = sqrt(self_radius*self_radius + other_radius*other_radius) / self_radius
-	var result_scale = scale * increas_percent
-	if result_scale > Vector2(10,10):
-		BulletCollisionComponent.bomb_bigger(self)
+		var increas_percent = sqrt(self_radius*self_radius + other_radius*other_radius) / self_radius
+		var result_scale = scale * increas_percent
+		var tween = create_tween()
+		tween.tween_property(self,"scale",result_scale,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+		if result_scale > Vector2(10,10):
+		#BulletCollisionComponent.bomb_bigger(self)
+			scale = Vector2(10,10)
+	elif other.is_in_group("friend_bullet"):
+		#print("other_radius",other_radius)
+		other_radius = other_radius * 1.5
+		var increas_percent = sqrt(self_radius*self_radius + other_radius*other_radius) / self_radius
+		var result_scale = scale * increas_percent
+		var tween = create_tween()
+		tween.tween_property(self,"scale",result_scale,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+		if result_scale > Vector2(10,10):
+		#BulletCollisionComponent.bomb_bigger(self)
+			scale = Vector2(10,10)
 	else :
+		var increas_percent = sqrt(self_radius*self_radius + other_radius*other_radius) / self_radius
+		var result_scale = scale * increas_percent
 		var tween = create_tween()
 		tween.tween_property(self,"scale",result_scale,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 
 func on_player_scale_changed(other_node:Node2D):
-	if other_node.is_in_group("player_bullet"):
+	if other_node.is_in_group("player_bullet") :
 		var bullet_radius = other_node.get_radius()
-		print("bullet_radius",bullet_radius)
 		var player_radius = get_radius()
-		print("player_radius",player_radius)
 		if player_radius <= bullet_radius || scale<Vector2(.1,.1):
 			scale = Vector2(.1,.1)
 		else :
 			var increas_percent = sqrt(player_radius*player_radius - bullet_radius*bullet_radius) / player_radius
 			var result_scale = scale * increas_percent
-			print(increas_percent,result_scale)
+			#print(increas_percent,result_scale)
 			var tween = create_tween()
 			tween.tween_property(self,"scale",result_scale,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	else :
 		pass
+	check_and_change_camera()
 	

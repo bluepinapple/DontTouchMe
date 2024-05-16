@@ -1,0 +1,194 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfscjxtevbvst"]
+
+[ext_resource type="PackedScene" uid="uid://can7rgrgkfjbs" path="res://game_object/player/Player.tscn" id="1_2d4av"]
+[ext_resource type="Script" path="res://tempt/scene_3.gd" id="1_ek3y1"]
+[ext_resource type="PackedScene" uid="uid://8hps81xj4umc" path="res://scene/game_camera/game_camera.tscn" id="2_cy57n"]
+[ext_resource type="Script" path="res://tempt/Node2D.gd" id="2_nd8sk"]
+[ext_resource type="PackedScene" uid="uid://bylxnw3t4c1ca" path="res://game_object/barraier/barrier.tscn" id="3_10c7w"]
+[ext_resource type="PackedScene" uid="uid://c3pw3vpmudebt" path="res://tempt/friend_device.tscn" id="3_ieb4w"]
+[ext_resource type="PackedScene" uid="uid://uto00la126yb" path="res://tempt/tempt_enemy.tscn" id="8_pr1r8"]
+[ext_resource type="PackedScene" uid="uid://bhn7dii5cenxu" path="res://scene/Vignette/vineggite.tscn" id="10_drmhy"]
+
+[sub_resource type="Animation" id="Animation_bag38"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EntitiesLayer/GameCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p0oos"]
+resource_name = "in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EntitiesLayer/GameCamera:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sbwmi"]
+_data = {
+"RESET": SubResource("Animation_bag38"),
+"in": SubResource("Animation_p0oos")
+}
+
+[node name="scene2" type="Node"]
+script = ExtResource("1_ek3y1")
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.839216, 0.717647, 0.741176, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../CanvasLayer")
+libraries = {
+"": SubResource("AnimationLibrary_sbwmi")
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.839216, 0.717647, 0.741176, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="FirstPause" type="Node2D" parent="CanvasLayer"]
+process_mode = 3
+script = ExtResource("2_nd8sk")
+friend = ExtResource("3_ieb4w")
+
+[node name="PauseLabel" type="Label" parent="CanvasLayer/FirstPause"]
+offset_left = 705.0
+offset_top = 236.0
+offset_right = 873.0
+offset_bottom = 313.0
+theme_override_colors/font_color = Color(0.980392, 0.980392, 0.980392, 1)
+theme_override_font_sizes/font_size = 56
+text = "测试用"
+
+[node name="Vineggite" parent="." instance=ExtResource("10_drmhy")]
+
+[node name="EntitiesLayer" type="Area2D" parent="." groups=["entities_layer"]]
+position = Vector2(1040, 504)
+
+[node name="Player" parent="EntitiesLayer" instance=ExtResource("1_2d4av")]
+z_index = 3
+position = Vector2(-518, 0)
+
+[node name="GameCamera" parent="EntitiesLayer" instance=ExtResource("2_cy57n")]
+
+[node name="Barrier16" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(795, -151)
+rotation = -1.5708
+
+[node name="Barrier18" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(795, -452)
+rotation = -1.5708
+
+[node name="Barrier2" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(795, 151)
+rotation = -1.5708
+
+[node name="Barrier3" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(795, -5)
+rotation = -1.5708
+
+[node name="Barrier4" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(795, 452)
+rotation = -1.5708
+
+[node name="Barrier5" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(723, 629)
+rotation = -0.785398
+
+[node name="Barrier6" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(549, 704)
+
+[node name="Barrier7" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(399, 704)
+
+[node name="Barrier8" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(248, 704)
+
+[node name="Barrier9" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(99, 704)
+
+[node name="Barrier10" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(-52, 704)
+
+[node name="Barrier11" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(-203, 704)
+
+[node name="Barrier13" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(-509, 704)
+
+[node name="Barrier14" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(-662, 704)
+
+[node name="Barrier15" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(-814, 704)
+
+[node name="Barrier19" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(549, -702)
+
+[node name="Barrier29" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(727, -626)
+rotation = -2.35619
+
+[node name="Barrier20" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(399, -702)
+
+[node name="Barrier21" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(248, -702)
+
+[node name="Barrier22" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(99, -702)
+
+[node name="Barrier23" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(-52, -702)
+
+[node name="Barrier24" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(-203, -702)
+
+[node name="Barrier25" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(-356, -702)
+
+[node name="Barrier26" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(-509, -702)
+
+[node name="Barrier27" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(-662, -702)
+
+[node name="Barrier28" parent="EntitiesLayer" instance=ExtResource("3_10c7w")]
+position = Vector2(-814, -702)
+
+[node name="Enemy" parent="EntitiesLayer" instance=ExtResource("8_pr1r8")]
+
+[node name="BulletsLayer" type="Area2D" parent="." groups=["bullets_layer"]]
+position = Vector2(1040, 504)

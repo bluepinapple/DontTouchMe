@@ -15,7 +15,7 @@ extends Node2D
 @export var bullet : PackedScene
 @export var max_speed = 600
 @export var acceleration : float = 150
-@export var spwan_time_wait : float = .3
+@export var spwan_time_wait : float = .2
 
 var is_shooting = false
 

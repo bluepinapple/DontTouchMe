@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://beg1bg2gs3hxx"]
+
+[ext_resource type="Script" path="res://tempt/one_health_enemy.gd" id="1_br8fl"]
+[ext_resource type="Texture2D" uid="uid://q0kmnk4u6hph" path="res://tempt/purple_body_circle.png" id="2_m4m0e"]
+[ext_resource type="PackedScene" uid="uid://c3skragfpgei5" path="res://game_object/portal/portalTo3.tscn" id="2_qhrp8"]
+[ext_resource type="PackedScene" uid="uid://dbixjbkms6yi5" path="res://scene/component/combine_componet.tscn" id="4_uoipl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_edyfi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_exfs2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t45km"]
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
+collision_mask = 5
+script = ExtResource("1_br8fl")
+portal = ExtResource("2_qhrp8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_m4m0e")
+
+[node name="TouchArea2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 158
+collision_mask = 12
+
+[node name="TouchCollision" type="CollisionShape2D" parent="TouchArea2D"]
+unique_name_in_owner = true
+scale = Vector2(8.43021, 8.43021)
+shape = SubResource("CircleShape2D_edyfi")
+
+[node name="AviodArea2D" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="AviodCollision" type="CollisionShape2D" parent="AviodArea2D"]
+unique_name_in_owner = true
+scale = Vector2(15.4161, 15.4161)
+shape = SubResource("CircleShape2D_exfs2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+scale = Vector2(5.71776, 5.71776)
+shape = SubResource("CircleShape2D_t45km")
+
+[node name="CombineComponet" parent="." node_paths=PackedStringArray("touch_area") instance=ExtResource("4_uoipl")]
+touch_area = NodePath("../TouchArea2D")

@@ -1,0 +1,75 @@
+[gd_scene load_steps=5 format=3 uid="uid://bydlf8yldtsme"]
+
+[ext_resource type="Script" path="res://scene/ui/show_text.gd" id="1_v7y8n"]
+
+[sub_resource type="Animation" id="Animation_t1vis"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_48nnj"]
+resource_name = "fade_out"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show_next_text"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w2st1"]
+_data = {
+"RESET": SubResource("Animation_t1vis"),
+"fade_out": SubResource("Animation_48nnj")
+}
+
+[node name="ShowText" type="Node2D"]
+script = ExtResource("1_v7y8n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_w2st1")
+}
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(1000, 1000)
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.580392, 0.580392, 0.580392, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 56
+text = "测试测试"
+horizontal_alignment = 1
+autowrap_mode = 2

@@ -3,4 +3,5 @@
 [ext_resource type="Script" path="res://GameCamera.gd" id="1_3m51p"]
 
 [node name="GameCamera" type="Camera2D"]
+process_mode = 3
 script = ExtResource("1_3m51p")

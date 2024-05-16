@@ -29,7 +29,6 @@ func on_area_entered(other:Node2D):
 	var self_radius = get_radius()
 	var is_other_player = other.owner.is_in_group("player")
 	var is_other_enmey = other.owner.is_in_group("enemy")
-	var is_other_bullet = other.owner.is_in_group("bullet") || other.owner.is_in_group("player_bullet")
 	if  is_other_player || is_other_enmey:
 		play_queue_free_anim()
 	else :
@@ -40,12 +39,15 @@ func on_area_entered(other:Node2D):
 
 
 func scale_increas(self_radius:float,other_radius:float):
-	var increas_percent = sqrt(self_radius*self_radius + other_radius*other_radius) / self_radius
-	if owner == null:
+	if owner.scale >= Vector2(3.0,3.0):
 		return
-	
-	var result_scale = owner.sprite_2d.scale * increas_percent
-	var tween = create_tween()
-	tween.tween_property(owner.sprite_2d,"scale",result_scale,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
-	owner.set_all_scale(owner.sprite_2d.scale)
+	else :
+		var increas_percent = sqrt(self_radius*self_radius + other_radius*other_radius) / self_radius
+		if owner == null:
+			return
+		
+		var result_scale = owner.sprite_2d.scale * increas_percent
+		var tween = create_tween()
+		tween.tween_property(owner.sprite_2d,"scale",result_scale,.2).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+		owner.set_all_scale(owner.sprite_2d.scale)
 

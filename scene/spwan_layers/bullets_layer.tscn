@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://bu1f3rpao6pw4"]
+
+[node name="BulletsLayer" type="Area2D" groups=["bullets_layer"]]
+position = Vector2(1040, 504)

@@ -42,7 +42,7 @@ func accelerate_to_player(start_posistion : Vector2):
 
 
 func accelerate_in_direction(direction:Vector2):
-	var desired_velocity = direction * max_speed
+	desired_velocity = direction * max_speed
 	velocity = velocity.lerp(desired_velocity , 1-exp(-acceleration * get_process_delta_time()))
 
 func on_body_entered(other_body:Node2D):

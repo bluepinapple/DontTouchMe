@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://dq80nepbsb14r"]
+
+[ext_resource type="Script" path="res://game_object/portal/portalTo4.gd" id="1_mbrkx"]
+[ext_resource type="Texture2D" uid="uid://dqkm0oucm2ks0" path="res://game_object/portal/platformPack_tile023.png" id="2_ibt45"]
+
+[sub_resource type="Animation" id="Animation_f6lsb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wqmm2"]
+resource_name = "idle"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ulkhs"]
+_data = {
+"RESET": SubResource("Animation_f6lsb"),
+"idle": SubResource("Animation_wqmm2")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ry0wu"]
+
+[node name="PortalTo2" type="Node2D"]
+z_index = 3
+script = ExtResource("1_mbrkx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ulkhs")
+}
+autoplay = "idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ibt45")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+scale = Vector2(1.97598, 1.97598)
+shape = SubResource("CircleShape2D_ry0wu")

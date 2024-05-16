@@ -37,8 +37,6 @@ func set_collision_shape_2d_state(state:bool):
 	collision_shape_2d.disabled = state
 
 func try_to_spwan(death_position:Vector2):
-	var spwan_succed = 0
-	
 	var random_rotation = Vector2.RIGHT.rotated(randf_range(0,TAU))*randf_range(10,80)
 	var spwan_position = random_rotation + death_position
 	global_position = spwan_position
@@ -46,22 +44,20 @@ func try_to_spwan(death_position:Vector2):
 	await get_tree().create_timer(.1).timeout
 	
 	for i in 50:
-		print(check_area_2d.get_overlapping_areas().is_empty())
+		#print(check_area_2d.get_overlapping_areas().is_empty())
 		if i >=40:
-			print("freed")
 			self.queue_free()
 			break
 		
 		if check_area_2d.get_overlapping_areas().is_empty():
 			visible = true
 			collision_shape_2d.disabled = false
-			spwan_succed +=1
 			break
 		else :
 			random_rotation = Vector2.RIGHT.rotated(randf_range(0,TAU))*randf_range(10,80)
 			spwan_position = random_rotation + death_position
 			global_position = spwan_position
-			print("arrey",check_area_2d.get_overlapping_areas())
-		print("i",i)
-	print("succed",spwan_succed)
+			#print("arrey",check_area_2d.get_overlapping_areas())
+		#print("i",i)
+	#print("succed",spwan_succed)
 

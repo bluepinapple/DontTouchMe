@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://csb8tlfdsintu"
+path="res://.godot/imported/Champ de tournesol.mp3-0f819b3b620214754ebef2f655d794df.mp3str"
+
+[deps]
+
+source_file="res://tempt/Champ de tournesol.mp3"
+dest_files=["res://.godot/imported/Champ de tournesol.mp3-0f819b3b620214754ebef2f655d794df.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
